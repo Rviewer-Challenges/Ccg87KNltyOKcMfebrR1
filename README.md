@@ -7,6 +7,7 @@ So, the game will have an initial screen to select one of the three difficulties
 - Easy: 4x4 board
 - Medium: 4x6 board (or 6x4 depending on the screen)
 - Difficult: 5x6 board (or 6x5 depending on screen)
+
 The application will have a main game screen that contains the following elements:
 - Game board. The board where the user will play and see the cards.
 - Move counter. Every time 2 cards are turned over it will increase by 1, whether you hit or not.
