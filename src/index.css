@@ -1,13 +1,65 @@
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 body {
-  margin:0
+  margin: 0;
+  font-family: "Marvel", serif;
 }
 
-img, picture, iframe {
-  display:block;
+img,
+picture,
+iframe {
+  display: block;
   width: 100%;
   margin: auto;
+}
+
+.negro {
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 1em;
+}
+
+.logo {
+  width: 120px;
+}
+
+.big-font {
+  font-size: 3.5rem;
+}
+
+.mid-font {
+  font-size: 1.5rem;
+}
+
+.blink_me {
+  animation: blinker 2s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+    color: red;
+  }
+}
+
+.flex-level {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.level-box {
+  width: 300px;
+  height: 350px;
+
+  margin: 1em;
+}
+
+.level-box:hover {
+  border: 1px solid white;
 }

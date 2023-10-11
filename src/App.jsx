@@ -1,8 +1,14 @@
+import Welcome from "./components/Welcome"
+import Board from "./components/board"
 
-function App() {
+
+export default function App() {
   return (
-    <></>
+    <>
+    <Welcome />
+    
+    </>
   )
 }
 
-export default App;
+
