@@ -17,7 +17,7 @@ iframe {
   margin: auto;
 }
 
-.negro {
+.backdrop {
   background-color: black;
   color: white;
   text-align: center;
@@ -63,3 +63,10 @@ iframe {
 .level-box:hover {
   border: 1px solid white;
 }
+
+.caption {
+  color: white;
+ text-decoration: none;
+}
+
+
