@@ -1,12 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Marvel:ital,wght@0,400;0,700;1,400;1,700&family=Teko:wght@500&display=swap");
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+  font-family: "Marvel", serif;
+  background-color: #110113;
 }
 
 body {
   margin: 0;
-  font-family: "Marvel", serif;
 }
 
 img,
@@ -18,14 +21,18 @@ iframe {
 }
 
 .backdrop {
-  background-color: black;
   color: white;
   text-align: center;
-  padding: 1em;
+  margin-top: 1.5em;
 }
 
 .logo {
   width: 120px;
+}
+@media (max-width: 480px) {
+  .logo {
+    margin-top: 2.5em;
+  }
 }
 
 .big-font {
@@ -43,8 +50,33 @@ iframe {
 @keyframes blinker {
   50% {
     opacity: 0;
-    color: red;
+    color: #ed1d24;
   }
+}
+@keyframes tilt-shaking {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(0eg);
+  }
+  75% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.gentle-hover-shake:hover {
+  animation: tilt-shaking 0.45s infinite;
+}
+
+.shake {
+  animation: tilt-shaking 0.45s infinite;
 }
 
 .flex-level {
@@ -55,9 +87,21 @@ iframe {
 
 .level-box {
   width: 300px;
-  height: 350px;
+  margin: 0.3em;
+}
 
-  margin: 1em;
+/* Media Query for Mobile Devices (vertical) */
+@media (max-width: 480px) {
+  .level-box {
+    width: 115px;
+  }
+}
+
+/* Media Query for Mobile Devices (horizontal) */
+@media (min-width: 481px) and (max-width: 980px) {
+  .level-box {
+    width: 170px;
+  }
 }
 
 .level-box:hover {
@@ -66,7 +110,118 @@ iframe {
 
 .caption {
   color: white;
- text-decoration: none;
+  text-decoration: none;
 }
 
+.card-flex {
+  max-height: 100vh;
+  max-width: 90vw;
+  /* overflow:scroll; */
+  display: flex;
+  justify-content: center;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  border: 1px solid red;
+  margin: auto;
+}
 
+.card-box {
+  width: 17%;
+  min-width: 65px; /* Minimum width to ensure clear visibility */
+  border: 1px solid white;
+  animation: slide-in 1s;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
+
+nav {
+  background-color: #110113;
+  display: flex;
+  justify-content: flex-start;
+  gap: 1em;
+  margin: 1em;
+}
+
+.right {
+  margin-left: auto;
+}
+
+.game_info {
+  font-size: medium;
+  background-color: #110113;
+  color: white;
+  padding: 0.5em;
+  border: 1px solid white;
+}
+
+button {
+  font-size: medium;
+  background-color: #ed1d24;
+  color: white;
+  padding: 0.5em;
+  border: 1px solid white;
+}
+
+button:hover {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+
+.card_deck {
+  width: min-content;
+  cursor: pointer;
+  width: 15em;
+  margin-top: 4em;
+}
+
+/* Media Query for Mobile Devices (horizontal) */
+@media (min-width: 481px) and (max-width: 980px) {
+  .card_deck {
+    width: 160px;
+  }
+}
+
+/* Media Query for Mobile Devices (vertical) */
+@media (max-width: 480px) {
+  .card_deck {
+    margin-top: 6em;
+    width: 200px;
+  }
+}
+
+.hidetooltip {
+  display: none;
+}
+
+@media (max-width: 480px) {
+  .hidetooltip {
+    display: block;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes wobble {
+  0%,
+  10% {
+    transform: rotateY(0turn);
+  }
+  50% {
+    transform: rotateY(0.5turn) scale(0.5);
+  }
+  90%,
+  100% {
+    transform: rotateY(1turn);
+  }
+}
