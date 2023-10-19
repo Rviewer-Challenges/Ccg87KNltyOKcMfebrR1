@@ -15,9 +15,10 @@ body {
 img,
 picture,
 iframe {
-  display: block;
+  display:block;
   width: 100%;
   margin: auto;
+  
 }
 
 .backdrop {
@@ -126,12 +127,37 @@ iframe {
   margin: auto;
 }
 
-.card-box {
-  width: 17%;
+/* style for easy and medium difficulty */
+.card-box4446 {
+  width: 22vw;
+  height: 20vh;
   min-width: 65px; /* Minimum width to ensure clear visibility */
   border: 1px solid white;
   animation: slide-in 1s;
 }
+/* Mobile Devices (vertical) */
+@media (max-width: 480px) {
+  .card-box4446 {
+    width: 20vw;
+    height: 11vh;
+  }
+}
+/* style for 30 cards (hard) */
+.card-box56 {
+  width: 14vw;
+  height: 20vh;
+  min-width: 65px; /* Minimum width to ensure clear visibility */
+  border: 1px solid green;
+  animation: slide-in 1s;
+}
+/* Mobile Devices (vertical) */
+@media (max-width: 480px) {
+  .card-box56 {
+    width: 15vw;
+    height: 11vh;
+  }
+}
+
 
 @keyframes slide-in {
   from {
