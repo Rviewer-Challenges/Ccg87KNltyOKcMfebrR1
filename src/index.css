@@ -162,6 +162,15 @@ nav {
   border: 1px solid white;
 }
 
+/* Media Query for Mobile Devices (vertical) */
+@media (max-width: 480px) {
+  .game_info {
+    font-size: small;
+    padding: 0.5em;
+    border:none;
+  }
+}
+
 button {
   font-size: medium;
   background-color: #ed1d24;
@@ -172,7 +181,6 @@ button {
 
 button:hover {
   background-color: black;
-  color: white;
   cursor: pointer;
 }
 

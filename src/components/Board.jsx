@@ -26,25 +26,6 @@ const cardImages = [
 
 
 
-// function setDifficulty(difficulty) {
-//   // removes cards based on difficulty
-//   if (difficulty == 'easy') {
-//     cardImages.splice(0,7)
-//   }
-//   if (difficulty == 'medium') {
-//     cardImages.splice(0,3)
-//   } else {
-//     cardImages
-//   }
-//   return cardImages
-  
-// }
-
-// setDifficulty('hard')
-
-
-
-
 function Board({}) {
   const { difficulty } = useParams();
   const [cards, setCards] = useState([])
@@ -58,10 +39,17 @@ function Board({}) {
     const instruction = document.getElementById("instruction");
     const timeLeft = document.getElementById("time_left");
     const turns = document.getElementById("turns");
-    
-    
-    // spread cards array and duplicate them
-    const shuffledCards = [...cardImages, ...cardImages]
+  //filter cards based on difficulty level
+    let filteredCards = [...cardImages]
+    if (difficulty == 'easy') {
+      filteredCards.splice(0,7)
+    } else if (difficulty == 'medium') {
+      filteredCards.splice(0,3)
+    } else {
+      filteredCards;
+    }
+  // spread cards array and duplicate them
+    const shuffledCards = [...filteredCards, ...filteredCards]
     .sort( () => Math.random() - 0.5)
     .map( (card) => ({ ...card, id: Math.random() }) )
   
@@ -109,8 +97,8 @@ function Board({}) {
         {cards.map(card => (
           <div className="card-box" key={card.id}>
             <div>
-              <img className="front" src={card.src} alt="card front"/>
-              {/* <img className="back" src="..\src\assets\img\game-cards\back_geo.jpg" alt="card back"/> */}
+              {/* <img className="front" src={card.src} alt="card front"/> */}
+              <img className="back" src="..\src\assets\img\game-cards\back_geo.jpg" alt="card back"/>
             </div>
           </div>
         )) }
