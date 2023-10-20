@@ -3,21 +3,21 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const cardImages = [
-  { src: "../src/assets/img/game-cards/america.jpg" },
-  { src: "../src/assets/img/game-cards/black_panther.jpg" },
-  { src: "../src/assets/img/game-cards/black_widow.jpg" },
-  { src: "../src/assets/img/game-cards/captain_marvel.jpg" },
-  { src: "../src/assets/img/game-cards/daredevil.jpg" },
-  { src: "../src/assets/img/game-cards/deadpool.jpg" },
-  { src: "../src/assets/img/game-cards/hawkeye.jpg" },
-  { src: "../src/assets/img/game-cards/hulk.jpg" },
-  { src: "../src/assets/img/game-cards/ironman.jpg" },
-  { src: "../src/assets/img/game-cards/loki.jpg" },
-  { src: "../src/assets/img/game-cards/punisher.jpg" },
-  { src: "../src/assets/img/game-cards/spiderman.jpg" },
-  { src: "../src/assets/img/game-cards/storm.jpg" },
-  { src: "../src/assets/img/game-cards/thor.jpg" },
-  { src: "../src/assets/img/game-cards/wolverine.jpg" },
+  { src: "../src/assets/img/game-cards-logos/america.jpg" },
+  { src: "../src/assets/img/game-cards-logos/black_panther.jpg" },
+  { src: "../src/assets/img/game-cards-logos/black_widow.jpg" },
+  { src: "../src/assets/img/game-cards-logos/captain_marvel.jpg" },
+  { src: "../src/assets/img/game-cards-logos/daredevil.jpg" },
+  { src: "../src/assets/img/game-cards-logos/deadpool.jpg" },
+  { src: "../src/assets/img/game-cards-logos/hawkeye.jpg" },
+  { src: "../src/assets/img/game-cards-logos/hulk.jpg" },
+  { src: "../src/assets/img/game-cards-logos/ironman.jpg" },
+  { src: "../src/assets/img/game-cards-logos/loki.jpg" },
+  { src: "../src/assets/img/game-cards-logos/punisher.jpg" },
+  { src: "../src/assets/img/game-cards-logos/spiderman.jpg" },
+  { src: "../src/assets/img/game-cards-logos/storm.jpg" },
+  { src: "../src/assets/img/game-cards-logos/thor.jpg" },
+  { src: "../src/assets/img/game-cards-logos/wolverine.jpg" },
 ];
 
 function Board({}) {
@@ -92,7 +92,7 @@ function Board({}) {
           id="card-deck"
           className="card_deck gentle-hover-shake"
           onClick={shuffledCards}
-          src="..\src\assets\img\card-deck.png"
+          src="..\src\assets\img\card-deck2.png"
           alt="card deck"
         />
         <p id="instruction">Click on deck to shuffle cards</p>
@@ -102,20 +102,20 @@ function Board({}) {
         {cards.map((card) => (
           <div
             className={
-              difficulty == "easy" || difficulty == "medium"
-                ? "card-box4446"
-                : "card-box56"
+              difficulty == "easy" ? 'card-box44' : difficulty == "medium"
+                ? "card-box64"
+                : "card-box65"
             }
             key={card.id}
           >
-            <div>
+            
               {/* <img className="front" src={card.src} alt="card front"/> */}
               <img
                 className="back"
-                src="..\src\assets\img\game-cards\back_geo.jpg"
+                src="..\src\assets\img\game-cards-logos\back.jpg"
                 alt="card back"
-              />
-            </div>
+              /> 
+            
           </div>
         ))}
       </div>

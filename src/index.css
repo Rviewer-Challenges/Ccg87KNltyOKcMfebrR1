@@ -5,21 +5,25 @@
 *::after {
   box-sizing: border-box;
   font-family: "Marvel", serif;
-  background-color: #110113;
+  background-color: #210225;
 }
 
 body {
   margin: 0;
+  
 }
 
-img,
+ img,
 picture,
 iframe {
   display:block;
   width: 100%;
   margin: auto;
   
-}
+  
+} 
+
+
 
 .backdrop {
   color: white;
@@ -123,36 +127,67 @@ iframe {
   align-content: flex-start;
   flex-wrap: wrap;
   gap: 0.5em;
-  border: 1px solid red;
   margin: auto;
 }
 
-/* style for easy and medium difficulty */
-.card-box4446 {
-  width: 22vw;
+/* style for easy difficulty */
+.card-box44 {
+  
+  width: 18vw;
   height: 20vh;
-  min-width: 65px; /* Minimum width to ensure clear visibility */
-  border: 1px solid white;
   animation: slide-in 1s;
 }
 /* Mobile Devices (vertical) */
 @media (max-width: 480px) {
-  .card-box4446 {
+  .card-box44 {
     width: 20vw;
     height: 11vh;
   }
 }
-/* style for 30 cards (hard) */
-.card-box56 {
+
+.card-box44 img {
+  width: 100%;
+  height: 100%;
+  object-fit:cover;
+  
+}
+
+/* style for medium difficulty (24 cards) */
+.card-box64 {
+  
   width: 14vw;
   height: 20vh;
-  min-width: 65px; /* Minimum width to ensure clear visibility */
-  border: 1px solid green;
   animation: slide-in 1s;
+}
+.card-box64 img {
+  width: 100%;
+  height: 100%;
+  object-fit:cover;
 }
 /* Mobile Devices (vertical) */
 @media (max-width: 480px) {
-  .card-box56 {
+  .card-box64 {
+    width: 20vw;
+    height: 11vh;
+  }
+}
+
+/* style for 30 cards (hard) */
+.card-box65 {
+  width: 14vw;
+  height: 20vh;
+  animation: slide-in 1s;
+}
+
+.card-box65 img {
+  width: 100%;
+  height: 100%;
+  object-fit:cover;
+}
+
+/* Mobile Devices (vertical) */
+@media (max-width: 480px) {
+  .card-box65 {
     width: 15vw;
     height: 11vh;
   }
@@ -169,7 +204,7 @@ iframe {
 }
 
 nav {
-  background-color: #110113;
+  
   display: flex;
   justify-content: flex-start;
   gap: 1em;
@@ -182,11 +217,12 @@ nav {
 
 .game_info {
   font-size: medium;
-  background-color: #110113;
+  
   color: white;
   padding: 0.5em;
-  border: 1px solid white;
+  
 }
+
 
 /* Media Query for Mobile Devices (vertical) */
 @media (max-width: 480px) {
@@ -202,7 +238,7 @@ button {
   background-color: #ed1d24;
   color: white;
   padding: 0.5em;
-  border: 1px solid white;
+  border: none;
 }
 
 button:hover {
