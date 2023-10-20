@@ -98,24 +98,30 @@ function Board({}) {
         <p id="instruction">Click on deck to shuffle cards</p>
       </div>
 
-      <div className="card-flex">
+      <div className={
+              difficulty == "easy"
+                ? "card-flex44"
+                : difficulty == "medium"
+                ? "card-flex64"
+                : "card-flex65"
+            }>
         {cards.map((card) => (
           <div
             className={
-              difficulty == "easy" ? 'card-box44' : difficulty == "medium"
+              difficulty == "easy"
+                ? "card-box44"
+                : difficulty == "medium"
                 ? "card-box64"
                 : "card-box65"
             }
             key={card.id}
           >
-            
-              {/* <img className="front" src={card.src} alt="card front"/> */}
-              <img
-                className="back"
-                src="..\src\assets\img\game-cards-logos\back.jpg"
-                alt="card back"
-              /> 
-            
+            <img className="front" src={card.src} alt="card front" />
+            {/* <img
+              className="back"
+              src="..\src\assets\img\game-cards-logos\back.jpg"
+              alt="card back"
+            /> */}
           </div>
         ))}
       </div>
