@@ -108,6 +108,13 @@ iframe {
     width: 170px;
   }
 }
+/* Large screens */
+@media (min-width: 1600px) {
+  .level-box {
+    width: 400px;
+    margin-top: 100px;
+}
+}
 
 .level-box:hover {
   border: 1px solid white;
@@ -192,6 +199,20 @@ iframe {
     
   }
 }
+
+/* Large screens */
+@media (min-width: 1400px) {
+  .card-flex64 {
+    max-width: 80vw;
+  }
+}
+@media (min-width: 1400px) {
+  .card-box64 {
+    width: 12vw;
+    
+  }
+}
+
 /* HARD*/
 .card-flex65{
   max-height: 90vh;
@@ -227,6 +248,18 @@ iframe {
 @media (max-width: 480px) {
   .card-box65 {
     width: 18vw;
+  }
+}
+/* Large screens */
+@media (min-width: 1400px) {
+  .card-flex65 {
+    max-width: 90vw;
+  }
+}
+@media (min-width: 1400px) {
+  .card-box65 {
+    width: 8.7vw;
+    
   }
 }
 
@@ -303,6 +336,20 @@ button:hover {
     margin-top: 6em;
     width: 200px;
   }
+}
+
+/* Large screens */
+@media (min-width: 1400px) {
+  .card_deck {
+    width: 300px;
+    margin-top: 100px;
+}
+}
+@media (min-width: 1600px) {
+  .card_deck {
+    width: 400px;
+    margin-top: 100px;
+}
 }
 
 .hidetooltip {
