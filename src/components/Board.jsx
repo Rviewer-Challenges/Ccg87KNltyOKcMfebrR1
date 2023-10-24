@@ -1,36 +1,43 @@
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import SingleCard from "./SingleCard";
 
 const cardImages = [
-  { src: "../src/assets/img/game-cards-logos/america.jpg" },
-  { src: "../src/assets/img/game-cards-logos/black_panther.jpg" },
-  { src: "../src/assets/img/game-cards-logos/black_widow.jpg" },
-  { src: "../src/assets/img/game-cards-logos/captain_marvel.jpg" },
-  { src: "../src/assets/img/game-cards-logos/daredevil.jpg" },
-  { src: "../src/assets/img/game-cards-logos/deadpool.jpg" },
-  { src: "../src/assets/img/game-cards-logos/hawkeye.jpg" },
-  { src: "../src/assets/img/game-cards-logos/hulk.jpg" },
-  { src: "../src/assets/img/game-cards-logos/ironman.jpg" },
-  { src: "../src/assets/img/game-cards-logos/loki.jpg" },
-  { src: "../src/assets/img/game-cards-logos/punisher.jpg" },
-  { src: "../src/assets/img/game-cards-logos/spiderman.jpg" },
-  { src: "../src/assets/img/game-cards-logos/storm.jpg" },
-  { src: "../src/assets/img/game-cards-logos/thor.jpg" },
-  { src: "../src/assets/img/game-cards-logos/wolverine.jpg" },
+  { src: "../src/assets/img/game-cards-logos/america.jpg", matched: false },
+  { src: "../src/assets/img/game-cards-logos/black_panther.jpg", matched: false },
+  { src: "../src/assets/img/game-cards-logos/black_widow.jpg", matched: false },
+  { src: "../src/assets/img/game-cards-logos/captain_marvel.jpg", matched: false },
+  { src: "../src/assets/img/game-cards-logos/daredevil.jpg", matched: false },
+  { src: "../src/assets/img/game-cards-logos/deadpool.jpg", matched: false },
+  { src: "../src/assets/img/game-cards-logos/hawkeye.jpg", matched: false },
+  { src: "../src/assets/img/game-cards-logos/hulk.jpg", matched: false },
+  { src: "../src/assets/img/game-cards-logos/ironman.jpg", matched: false },
+  { src: "../src/assets/img/game-cards-logos/loki.jpg", matched: false },
+  { src: "../src/assets/img/game-cards-logos/punisher.jpg", matched: false },
+  { src: "../src/assets/img/game-cards-logos/spiderman.jpg", matched: false },
+  { src: "../src/assets/img/game-cards-logos/storm.jpg", matched: false },
+  { src: "../src/assets/img/game-cards-logos/thor.jpg", matched: false },
+  { src: "../src/assets/img/game-cards-logos/wolverine.jpg", matched: false },
 ];
 
 function Board({}) {
   const { difficulty } = useParams();
   const [cards, setCards] = useState([]);
   const [turns, setTurns] = useState(0);
+  const [choiceOne, setChoiceOne] = useState(null);
+  const [choiceTwo, setChoiceTwo] = useState(null);
+
 
   //shuffle cards
   const shuffledCards = () => {
     const cardDeck = document.getElementById("card-deck");
     const instruction = document.getElementById("instruction");
+    
+    // game info indicators
     const timeLeft = document.getElementById("time_left");
     const turns = document.getElementById("turns");
+
     //filter cards based on difficulty level
     let filteredCards = [...cardImages];
     if (difficulty == "easy") {
@@ -50,17 +57,57 @@ function Board({}) {
     // refresh turns
     setTurns(0);
 
+
     // hide card deck and show game info
     cardDeck.style.display = "none";
     instruction.style.display = "none";
     turns.style.display = "block";
     timeLeft.style.display = "block";
+
   };
 
   function shake() {
     const cardDeck = document.getElementById("card-deck");
     cardDeck.classList.toggle("shake");
   }
+
+  // handle choice
+  // if choice one has a value, then we set choice two
+    const handleChoice = (card) => {
+      choiceOne ? setChoiceTwo(card) : setChoiceOne(card)
+    }
+
+    // compare 2 selected cards
+    useEffect(()=> {
+      if (choiceOne && choiceTwo) {
+        if (choiceOne.src === choiceTwo.src) {
+          setCards(prevCards => {
+            return prevCards.map(card => {
+              if (card.src === choiceOne.src) {
+                return {...card, matched: true}
+              } else {
+                return card;
+              }
+            })
+          })
+          resetTurn();
+        } else {
+          
+          resetTurn();
+        }
+      }
+    }, [choiceOne, choiceTwo]);
+
+    console.log(cards);
+
+    //reset choices & increase turn
+    const resetTurn = () => {
+      setChoiceOne(null);
+      setChoiceTwo(null);
+      setTurns(prevTurns => prevTurns +1);
+    }
+  
+
 
   return (
     <>
@@ -98,31 +145,21 @@ function Board({}) {
         <p id="instruction">Click on deck to shuffle cards</p>
       </div>
 
+    {/* LAYOUT CARDS */}
       <div className={
               difficulty == "easy"
-                ? "card-flex44"
+                ? "card-grid-44"
                 : difficulty == "medium"
-                ? "card-flex64"
-                : "card-flex65"
+                ? "card-grid-64"
+                : "card-grid-65"
             }>
         {cards.map((card) => (
-          <div
-            className={
-              difficulty == "easy"
-                ? "card-box44"
-                : difficulty == "medium"
-                ? "card-box64"
-                : "card-box65"
-            }
-            key={card.id}
-          >
-            <img className="front" src={card.src} alt="card front" />
-            {/* <img
-              className="back"
-              src="..\src\assets\img\game-cards-logos\back.jpg"
-              alt="card back"
-            /> */}
-          </div>
+          < SingleCard 
+            key={card.id} 
+            card={card} 
+            difficulty={difficulty}
+            handleChoice={handleChoice}
+            flipped = {card === choiceOne || card === choiceTwo || card.matched} />
         ))}
       </div>
     </>
