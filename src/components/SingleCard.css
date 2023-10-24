@@ -9,10 +9,27 @@
 
 /* front of card  */
 .card .front {
-    transform: rotateY('90deg');
+    /* hid by rotating in Y axis */
+    transform: rotateY(90deg);
+    transition: all ease-in 0.2s;
     position: absolute;
 }
 .flipped .front {
-    transform: rotateY('0deg')
+    transform: rotateY(0deg);
+    transition-delay: 0.2s;
 }
 
+/* back of the card */
+.card .back {
+    cursor: pointer;
+    transition: all ease-in 0.2s;
+    transition-delay: 0.2s;
+}
+.card .back:hover {
+    cursor: pointer;
+    border: 1px solid white;
+}
+.flipped .back {
+    transform: rotateY(90deg);
+    transition-delay: 0.2s;
+}

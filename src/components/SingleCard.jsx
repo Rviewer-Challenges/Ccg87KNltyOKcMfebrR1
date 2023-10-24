@@ -1,8 +1,6 @@
 import "./SingleCard.css";
-import { useParams } from "react-router-dom";
 
 export default function SingleCard({ card, handleChoice, flipped }) {
-  const { difficulty } = useParams();
 
   const handleClick = () => {
     handleChoice(card);

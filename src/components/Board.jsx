@@ -84,6 +84,7 @@ function Board({}) {
           setCards(prevCards => {
             return prevCards.map(card => {
               if (card.src === choiceOne.src) {
+                // new object with the matched pair set to true
                 return {...card, matched: true}
               } else {
                 return card;
@@ -93,12 +94,11 @@ function Board({}) {
           resetTurn();
         } else {
           
-          resetTurn();
+          setTimeout(() => resetTurn(), 1000);
         }
       }
     }, [choiceOne, choiceTwo]);
 
-    console.log(cards);
 
     //reset choices & increase turn
     const resetTurn = () => {
@@ -133,7 +133,7 @@ function Board({}) {
         </span>
       </nav>
 
-      {/* SHUFFLE ANIMATION */}
+      {/* SHAKE CARD DECK ANIMATION */}
       <div className="backdrop">
         <img
           id="card-deck"
