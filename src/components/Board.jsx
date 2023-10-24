@@ -5,9 +5,15 @@ import SingleCard from "./SingleCard";
 
 const cardImages = [
   { src: "../src/assets/img/game-cards-logos/america.jpg", matched: false },
-  { src: "../src/assets/img/game-cards-logos/black_panther.jpg", matched: false },
+  {
+    src: "../src/assets/img/game-cards-logos/black_panther.jpg",
+    matched: false,
+  },
   { src: "../src/assets/img/game-cards-logos/black_widow.jpg", matched: false },
-  { src: "../src/assets/img/game-cards-logos/captain_marvel.jpg", matched: false },
+  {
+    src: "../src/assets/img/game-cards-logos/captain_marvel.jpg",
+    matched: false,
+  },
   { src: "../src/assets/img/game-cards-logos/daredevil.jpg", matched: false },
   { src: "../src/assets/img/game-cards-logos/deadpool.jpg", matched: false },
   { src: "../src/assets/img/game-cards-logos/hawkeye.jpg", matched: false },
@@ -27,13 +33,25 @@ function Board({}) {
   const [turns, setTurns] = useState(0);
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
-
+  const [disabled, setDisabled] = useState(false);
+  const [timer, setTimer] = useState(60);
 
   //shuffle cards
   const shuffledCards = () => {
+    setTimer(60);
+
+    // useEffect(()=> {
+    //   if (timer>0) {
+    //     setTimer(timer--);
+
+    //   } else {
+    //     return timer
+    //   }
+    // })
+
     const cardDeck = document.getElementById("card-deck");
     const instruction = document.getElementById("instruction");
-    
+
     // game info indicators
     const timeLeft = document.getElementById("time_left");
     const turns = document.getElementById("turns");
@@ -57,13 +75,11 @@ function Board({}) {
     // refresh turns
     setTurns(0);
 
-
     // hide card deck and show game info
     cardDeck.style.display = "none";
     instruction.style.display = "none";
     turns.style.display = "block";
     timeLeft.style.display = "block";
-
   };
 
   function shake() {
@@ -73,41 +89,40 @@ function Board({}) {
 
   // handle choice
   // if choice one has a value, then we set choice two
-    const handleChoice = (card) => {
-      choiceOne ? setChoiceTwo(card) : setChoiceOne(card)
-    }
+  const handleChoice = (card) => {
+    choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
+  };
 
-    // compare 2 selected cards
-    useEffect(()=> {
-      if (choiceOne && choiceTwo) {
-        if (choiceOne.src === choiceTwo.src) {
-          setCards(prevCards => {
-            return prevCards.map(card => {
-              if (card.src === choiceOne.src) {
-                // new object with the matched pair set to true
-                return {...card, matched: true}
-              } else {
-                return card;
-              }
-            })
-          })
-          resetTurn();
-        } else {
-          
-          setTimeout(() => resetTurn(), 1000);
-        }
+  // compare 2 selected cards
+  useEffect(() => {
+    if (choiceOne && choiceTwo) {
+      // whe a choice is made, disable other cards to make unclicable for a moment
+      setDisabled(true);
+      if (choiceOne.src === choiceTwo.src) {
+        setCards((prevCards) => {
+          return prevCards.map((card) => {
+            if (card.src === choiceOne.src) {
+              // new object with the matched pair set to true
+              return { ...card, matched: true };
+            } else {
+              return card;
+            }
+          });
+        });
+        resetTurn();
+      } else {
+        setTimeout(() => resetTurn(), 1000);
       }
-    }, [choiceOne, choiceTwo]);
-
-
-    //reset choices & increase turn
-    const resetTurn = () => {
-      setChoiceOne(null);
-      setChoiceTwo(null);
-      setTurns(prevTurns => prevTurns +1);
     }
-  
+  }, [choiceOne, choiceTwo]);
 
+  //reset choices & increase turn
+  const resetTurn = () => {
+    setChoiceOne(null);
+    setChoiceTwo(null);
+    setTurns((prevTurns) => prevTurns + 1);
+    setDisabled(false);
+  };
 
   return (
     <>
@@ -126,10 +141,10 @@ function Board({}) {
           DIFFICULTY: {difficulty.toUpperCase()}
         </span>
         <span id="turns" className="game_info hidden">
-          TURNS: 2
+          TURNS: {turns}
         </span>
         <span id="time_left" className="game_info hidden">
-          TIME LEFT: 59seg
+          TIME LEFT: {timer} sec
         </span>
       </nav>
 
@@ -145,21 +160,25 @@ function Board({}) {
         <p id="instruction">Click on deck to shuffle cards</p>
       </div>
 
-    {/* LAYOUT CARDS */}
-      <div className={
-              difficulty == "easy"
-                ? "card-grid-44"
-                : difficulty == "medium"
-                ? "card-grid-64"
-                : "card-grid-65"
-            }>
+      {/* LAYOUT CARDS */}
+      <div
+        className={
+          difficulty == "easy"
+            ? "card-grid-44"
+            : difficulty == "medium"
+            ? "card-grid-64"
+            : "card-grid-65"
+        }
+      >
         {cards.map((card) => (
-          < SingleCard 
-            key={card.id} 
-            card={card} 
+          <SingleCard
+            key={card.id}
+            card={card}
             difficulty={difficulty}
             handleChoice={handleChoice}
-            flipped = {card === choiceOne || card === choiceTwo || card.matched} />
+            flipped={card === choiceOne || card === choiceTwo || card.matched}
+            disabled={disabled}
+          />
         ))}
       </div>
     </>
