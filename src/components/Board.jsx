@@ -4,27 +4,21 @@ import { Link } from "react-router-dom";
 import SingleCard from "./SingleCard";
 
 const cardImages = [
-  { src: "../src/assets/img/game-cards-logos/america.jpg", matched: false },
-  {
-    src: "../src/assets/img/game-cards-logos/black_panther.jpg",
-    matched: false,
-  },
+  { src: "../src/assets/img/game-cards-logos/storm.jpg", matched: false },
   { src: "../src/assets/img/game-cards-logos/black_widow.jpg", matched: false },
-  {
-    src: "../src/assets/img/game-cards-logos/captain_marvel.jpg",
-    matched: false,
-  },
   { src: "../src/assets/img/game-cards-logos/daredevil.jpg", matched: false },
   { src: "../src/assets/img/game-cards-logos/deadpool.jpg", matched: false },
   { src: "../src/assets/img/game-cards-logos/hawkeye.jpg", matched: false },
-  { src: "../src/assets/img/game-cards-logos/hulk.jpg", matched: false },
-  { src: "../src/assets/img/game-cards-logos/ironman.jpg", matched: false },
   { src: "../src/assets/img/game-cards-logos/loki.jpg", matched: false },
+  {src: "../src/assets/img/game-cards-logos/captain_marvel.jpg", matched: false,},
+  { src: "../src/assets/img/game-cards-logos/ironman.jpg", matched: false },
   { src: "../src/assets/img/game-cards-logos/punisher.jpg", matched: false },
   { src: "../src/assets/img/game-cards-logos/spiderman.jpg", matched: false },
-  { src: "../src/assets/img/game-cards-logos/storm.jpg", matched: false },
   { src: "../src/assets/img/game-cards-logos/thor.jpg", matched: false },
   { src: "../src/assets/img/game-cards-logos/wolverine.jpg", matched: false },
+  { src: "../src/assets/img/game-cards-logos/america.jpg", matched: false },
+  {src: "../src/assets/img/game-cards-logos/black_panther.jpg", matched: false},
+  { src: "../src/assets/img/game-cards-logos/hulk.jpg", matched: false }
 ];
 
 function Board({}) {
@@ -35,10 +29,12 @@ function Board({}) {
   const [choiceTwo, setChoiceTwo] = useState(null);
   const [disabled, setDisabled] = useState(false);
   const [timer, setTimer] = useState(60);
+  const [matches, setMatches] = useState(0);
 
   //shuffle cards
   const shuffledCards = () => {
     setTimer(60);
+    setMatches(0);
 
 
 
@@ -48,6 +44,7 @@ function Board({}) {
     // game info indicators
     const timeLeft = document.getElementById("time_left");
     const turns = document.getElementById("turns");
+    const match_count = document.getElementById("matches");
 
     //filter cards based on difficulty level
     let filteredCards = [...cardImages];
@@ -65,16 +62,15 @@ function Board({}) {
 
     setCards(shuffledCards);
     
-
     // refresh turns
     setTurns(0);
-    
 
     // hide card deck and show game info
     cardDeck.style.display = "none";
     instruction.style.display = "none";
     turns.style.display = "block";
     timeLeft.style.display = "block";
+    match_count.style.display = "block";
   };
 
   function shake() {
@@ -103,6 +99,8 @@ function Board({}) {
         setCards((prevCards) => {
           return prevCards.map((card) => {
             if (card.src === choiceOne.src) {
+              // increase match count
+              setMatches(matches +1);
               // new object with the matched pair set to true
               return { ...card, matched: true };
             } else {
@@ -145,6 +143,9 @@ function Board({}) {
         <span id="turns" className="game_info hidden">
           TURNS: {turns}
         </span>
+        <span id="matches" className="game_info hidden">
+          MATCHES: {matches}
+        </span>
         <span id="time_left" className={timer > 0 ? "game_info hidden": "game_info blink_me"}>
           TIME LEFT: {timer} sec
         </span>
@@ -178,7 +179,7 @@ function Board({}) {
             card={card}
             difficulty={difficulty}
             handleChoice={handleChoice}
-            flipped={card === choiceOne || card === choiceTwo || card.matched}
+            flipped={card === choiceOne || card === choiceTwo || card.matched || timer == 0}
             disabled={disabled}
             timer={timer}
           />

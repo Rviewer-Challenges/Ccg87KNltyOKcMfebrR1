@@ -3,15 +3,15 @@ import "./SingleCard.css";
 export default function SingleCard({ card, handleChoice, flipped, disabled, timer }) {
 
   const handleClick = () => {
-    if (!disabled) {
+    if (!disabled && timer > 0) {
         handleChoice(card);
         }
   };
 
   return (
-    <div className={timer==0 ? "card disabled" : "card"}>
+    <div className="card">
       <div className={flipped ? "flipped" : ""}>
-        <img className="front" src={card.src} alt="card front" />
+        <img className={flipped && !card.matched && timer == 0 ? "front unmatched" : "front" } src={card.src} alt="card front" />
         <img
           className="back"
           onClick={handleClick}

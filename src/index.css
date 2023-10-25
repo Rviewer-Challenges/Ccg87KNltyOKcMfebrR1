@@ -272,10 +272,18 @@ nav {
 
 button {
   font-size: medium;
+  height: 3rem;
   background-color: #ed1d24;
   color: white;
   padding: 0.5em;
   border: none;
+}
+/* Media Query for Mobile Devices (horizontal) */
+@media (max-width: 480px) {
+  button {
+    font-size: small;
+    height: 3.5rem;
+  }
 }
 
 button:hover {

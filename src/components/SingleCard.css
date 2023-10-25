@@ -2,14 +2,9 @@
     position: relative;
 }
 
-.disabled {
-    pointer-events: none;
-}
-
 .card img {
     width: 100%;
-    display: block;
-    
+    display: block; 
 }
 
 /* front of card  */
@@ -37,4 +32,10 @@
 .flipped .back {
     transform: rotateY(90deg);
     transition-delay: 0.2s;
+}
+
+
+
+.unmatched {
+    opacity: 0.3;
 }
