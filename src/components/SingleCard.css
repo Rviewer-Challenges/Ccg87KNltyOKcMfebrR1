@@ -2,6 +2,10 @@
     position: relative;
 }
 
+.disabled {
+    pointer-events: none;
+}
+
 .card img {
     width: 100%;
     display: block;

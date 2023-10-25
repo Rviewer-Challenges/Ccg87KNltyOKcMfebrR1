@@ -40,14 +40,7 @@ function Board({}) {
   const shuffledCards = () => {
     setTimer(60);
 
-    // useEffect(()=> {
-    //   if (timer>0) {
-    //     setTimer(timer--);
 
-    //   } else {
-    //     return timer
-    //   }
-    // })
 
     const cardDeck = document.getElementById("card-deck");
     const instruction = document.getElementById("instruction");
@@ -71,9 +64,11 @@ function Board({}) {
       .map((card) => ({ ...card, id: Math.random() }));
 
     setCards(shuffledCards);
+    
 
     // refresh turns
     setTurns(0);
+    
 
     // hide card deck and show game info
     cardDeck.style.display = "none";
@@ -86,6 +81,12 @@ function Board({}) {
     const cardDeck = document.getElementById("card-deck");
     cardDeck.classList.toggle("shake");
   }
+
+    // start timer
+    useEffect(()=> {
+      const counter = timer > 0 && setInterval(()=> setTimer(timer - 1), 1000);
+      return ()=> clearInterval(counter);
+    }, [timer]);
 
   // handle choice
   // if choice one has a value, then we set choice two
@@ -123,6 +124,7 @@ function Board({}) {
     setTurns((prevTurns) => prevTurns + 1);
     setDisabled(false);
   };
+  
 
   return (
     <>
@@ -132,10 +134,10 @@ function Board({}) {
           onMouseOver={shake}
           onMouseLeave={shake}
         >
-          SHUFFLE CARDS
+          NEW GAME
         </button>
         <Link to="/">
-          <button>BACK HOME</button>
+          <button>CHANGE DIFFICULTY</button>
         </Link>
         <span className="right game_info">
           DIFFICULTY: {difficulty.toUpperCase()}
@@ -143,7 +145,7 @@ function Board({}) {
         <span id="turns" className="game_info hidden">
           TURNS: {turns}
         </span>
-        <span id="time_left" className="game_info hidden">
+        <span id="time_left" className={timer > 0 ? "game_info hidden": "game_info blink_me"}>
           TIME LEFT: {timer} sec
         </span>
       </nav>
@@ -178,6 +180,7 @@ function Board({}) {
             handleChoice={handleChoice}
             flipped={card === choiceOne || card === choiceTwo || card.matched}
             disabled={disabled}
+            timer={timer}
           />
         ))}
       </div>
