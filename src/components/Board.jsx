@@ -28,15 +28,16 @@ function Board({}) {
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
   const [disabled, setDisabled] = useState(false);
-  const [timer, setTimer] = useState(60);
+  const [timer, setTimer] = useState(61);
   const [matches, setMatches] = useState(0);
 
   //shuffle cards
   const shuffledCards = () => {
-    setTimer(60);
+    // initialize/reset timer, turns and matches count
+    setTurns(0);
     setMatches(0);
-
-
+    setTimer(60);
+  
 
     const cardDeck = document.getElementById("card-deck");
     const instruction = document.getElementById("instruction");
@@ -62,10 +63,8 @@ function Board({}) {
 
     setCards(shuffledCards);
     
-    // refresh turns
-    setTurns(0);
 
-    // hide card deck and show game info
+    // hide card deck and show game info indicators
     cardDeck.style.display = "none";
     instruction.style.display = "none";
     turns.style.display = "block";
@@ -73,14 +72,22 @@ function Board({}) {
     match_count.style.display = "block";
   };
 
+  //shake animation on card deck
   function shake() {
     const cardDeck = document.getElementById("card-deck");
     cardDeck.classList.toggle("shake");
   }
 
+  
+
     // start timer
     useEffect(()=> {
       const counter = timer > 0 && setInterval(()=> setTimer(timer - 1), 1000);
+      // Pause timer if all matches
+      if (matches === cards.length/2) {
+        clearInterval(counter);
+      }
+      //cleanup function clears the counter when the component unmounts or when timer change
       return ()=> clearInterval(counter);
     }, [timer]);
 
@@ -144,14 +151,14 @@ function Board({}) {
           TURNS: {turns}
         </span>
         <span id="matches" className="game_info hidden">
-          MATCHES: {matches}
+          MATCHES: {matches + " / " + cards.length/2}
         </span>
         <span id="time_left" className={timer > 0 ? "game_info hidden": "game_info blink_me"}>
           TIME LEFT: {timer} sec
         </span>
       </nav>
 
-      {/* SHAKE CARD DECK ANIMATION */}
+      {/* CARD DECK WITH HOVER SHAKE ANIMATION */}
       <div className="backdrop">
         <img
           id="card-deck"
@@ -163,7 +170,7 @@ function Board({}) {
         <p id="instruction">Click on deck to shuffle cards</p>
       </div>
 
-      {/* LAYOUT CARDS */}
+      {/* LAYOUT CARDS BASED ON LEVEL*/}
       <div
         className={
           difficulty == "easy"

@@ -1,6 +1,9 @@
 import easy from "../assets/img/easy-card.jpg";
+import easyGIF from "../assets/img/spider.gif";
 import medium from "../assets/img/medium-card.jpg";
+import mediumGIF from "../assets/img/ironman.gif";
 import hard from "../assets/img/hard-card.jpg";
+import hardGIF from "../assets/img/hulk-roar.gif";
 import logo from "../assets/img/marvel-logo.png";
 import { Link } from "react-router-dom";
 
@@ -16,8 +19,8 @@ export default function Welcome() {
         <div className="flex-level">
           <Link className="caption" to="/play/easy">
             <img
-              onMouseEnter={showCaption}
-              onMouseLeave={showCaption}
+              onMouseEnter={easyEffectIn}
+              onMouseLeave={easyEffectOut}
               className="level-box"
               id="easy"
               src={easy}
@@ -30,8 +33,8 @@ export default function Welcome() {
           <Link className="caption" to="/play/medium">
             <img
               
-              onMouseEnter={showCaption}
-              onMouseLeave={showCaption}
+              onMouseEnter={medEffectIn}
+              onMouseLeave={medEffectOut}
               className="level-box"
               src={medium}
               id="medium"
@@ -44,8 +47,8 @@ export default function Welcome() {
           <Link className="caption" to="/play/hard">
             <img
               className="level-box"
-              onMouseEnter={showCaption}
-              onMouseLeave={showCaption}
+              onMouseEnter={hardEffectIn}
+              onMouseLeave={hardEffectOut}
               id="hard"
               src={hard}
               alt="hard"
@@ -63,8 +66,38 @@ export default function Welcome() {
 
 function showCaption() {
    document.getElementById("56caption").classList.toggle("hidetooltip");
+   document.getElementById("hard").src=hardGIF
    document.getElementById("46caption").classList.toggle("hidetooltip");
    document.getElementById("44caption").classList.toggle("hidetooltip");
 }
+
+function hardEffectIn() {
+  document.getElementById("56caption").classList.remove("hidetooltip");
+  document.getElementById("hard").src=hardGIF
+}
+function hardEffectOut() {
+  document.getElementById("56caption").classList.add("hidetooltip");
+  document.getElementById("hard").src=hard
+}
+
+function medEffectIn() {
+  document.getElementById("46caption").classList.remove("hidetooltip");
+  document.getElementById("medium").src=mediumGIF
+}
+function medEffectOut() {
+  document.getElementById("46caption").classList.add("hidetooltip");
+  document.getElementById("medium").src=medium
+}
+
+function easyEffectIn() {
+  document.getElementById("44caption").classList.remove("hidetooltip");
+  document.getElementById("easy").src=easyGIF
+}
+function easyEffectOut() {
+  document.getElementById("44caption").classList.add("hidetooltip");
+  document.getElementById("easy").src=easy
+}
+
+
 
 
