@@ -19,12 +19,12 @@ export default function Welcome() {
         <div className="flex-level">
           <Link className="caption" to="/play/easy">
             <img
-              onMouseEnter={easyEffectIn}
-              onMouseLeave={easyEffectOut}
+              onMouseEnter={() => handleEffect("44caption", "easy", easy, easyGIF, "in")}
+              onMouseLeave={() => handleEffect("44caption", "easy", easy, easyGIF, "out")}
               className="level-box"
               id="easy"
               src={easy}
-              alt="easy"
+              alt="Difficulty: easy"
             />
             <span id="44caption" className="board_info hidetooltip">
               16 cards
@@ -33,12 +33,12 @@ export default function Welcome() {
           <Link className="caption" to="/play/medium">
             <img
               
-              onMouseEnter={medEffectIn}
-              onMouseLeave={medEffectOut}
+              onMouseEnter={() => handleEffect("46caption", "medium", medium, mediumGIF, "in")}
+              onMouseLeave={() => handleEffect("46caption", "medium", medium, mediumGIF, "out")}
               className="level-box"
               src={medium}
               id="medium"
-              alt="medium"
+              alt="Difficulty: medium"
             />
             <span id="46caption" className="board_info hidetooltip" >
               24 cards
@@ -47,11 +47,11 @@ export default function Welcome() {
           <Link className="caption" to="/play/hard">
             <img
               className="level-box"
-              onMouseEnter={hardEffectIn}
-              onMouseLeave={hardEffectOut}
+              onMouseEnter={() => handleEffect("56caption", "hard", hard, hardGIF, "in")}
+              onMouseLeave={() => handleEffect("56caption", "hard", hard, hardGIF, "out")}
               id="hard"
               src={hard}
-              alt="hard"
+              alt="Difficulty: hard"
             />
             <span  id="56caption" className="board_info hidetooltip" >
               30 cards
@@ -64,39 +64,20 @@ export default function Welcome() {
 }
 
 
-function showCaption() {
-   document.getElementById("56caption").classList.toggle("hidetooltip");
-   document.getElementById("hard").src=hardGIF
-   document.getElementById("46caption").classList.toggle("hidetooltip");
-   document.getElementById("44caption").classList.toggle("hidetooltip");
-}
+function handleEffect(tooltipId, imageId, normalSrc, gifSrc, action) {
+  const tooltip = document.getElementById(tooltipId);
+  const image = document.getElementById(imageId);
+  if (action === 'in') {
+    tooltip.classList.remove("hidetooltip");
+  image.src=gifSrc;
+  } else if (action === "out") {
+    tooltip.classList.add("hidetooltip");
+    image.src=normalSrc;
+  }
+  }
+  
 
-function hardEffectIn() {
-  document.getElementById("56caption").classList.remove("hidetooltip");
-  document.getElementById("hard").src=hardGIF
-}
-function hardEffectOut() {
-  document.getElementById("56caption").classList.add("hidetooltip");
-  document.getElementById("hard").src=hard
-}
 
-function medEffectIn() {
-  document.getElementById("46caption").classList.remove("hidetooltip");
-  document.getElementById("medium").src=mediumGIF
-}
-function medEffectOut() {
-  document.getElementById("46caption").classList.add("hidetooltip");
-  document.getElementById("medium").src=medium
-}
-
-function easyEffectIn() {
-  document.getElementById("44caption").classList.remove("hidetooltip");
-  document.getElementById("easy").src=easyGIF
-}
-function easyEffectOut() {
-  document.getElementById("44caption").classList.add("hidetooltip");
-  document.getElementById("easy").src=easy
-}
 
 
 
