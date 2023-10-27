@@ -64,6 +64,7 @@ export default function Welcome() {
 }
 
 
+// ANIMATION ON LEVEL IMAGES
 function handleEffect(tooltipId, imageId, normalSrc, gifSrc, action) {
   const tooltip = document.getElementById(tooltipId);
   const image = document.getElementById(imageId);

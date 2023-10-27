@@ -10,15 +10,21 @@ const cardImages = [
   { src: "../src/assets/img/game-cards-logos/deadpool.jpg", matched: false },
   { src: "../src/assets/img/game-cards-logos/hawkeye.jpg", matched: false },
   { src: "../src/assets/img/game-cards-logos/loki.jpg", matched: false },
-  {src: "../src/assets/img/game-cards-logos/captain_marvel.jpg", matched: false,},
+  {
+    src: "../src/assets/img/game-cards-logos/captain_marvel.jpg",
+    matched: false,
+  },
   { src: "../src/assets/img/game-cards-logos/ironman.jpg", matched: false },
   { src: "../src/assets/img/game-cards-logos/punisher.jpg", matched: false },
   { src: "../src/assets/img/game-cards-logos/spiderman.jpg", matched: false },
   { src: "../src/assets/img/game-cards-logos/thor.jpg", matched: false },
   { src: "../src/assets/img/game-cards-logos/wolverine.jpg", matched: false },
   { src: "../src/assets/img/game-cards-logos/america.jpg", matched: false },
-  {src: "../src/assets/img/game-cards-logos/black_panther.jpg", matched: false},
-  { src: "../src/assets/img/game-cards-logos/hulk.jpg", matched: false }
+  {
+    src: "../src/assets/img/game-cards-logos/black_panther.jpg",
+    matched: false,
+  },
+  { src: "../src/assets/img/game-cards-logos/hulk.jpg", matched: false },
 ];
 
 function Board({}) {
@@ -31,13 +37,12 @@ function Board({}) {
   const [timer, setTimer] = useState(61);
   const [matches, setMatches] = useState(0);
 
-  //shuffle cards
+  //SHUFFLE CARDS and START GAME
   const shuffledCards = () => {
     // initialize/reset timer, turns and matches count
     setTurns(0);
     setMatches(0);
     setTimer(60);
-  
 
     const cardDeck = document.getElementById("card-deck");
     const instruction = document.getElementById("instruction");
@@ -62,7 +67,6 @@ function Board({}) {
       .map((card) => ({ ...card, id: Math.random() }));
 
     setCards(shuffledCards);
-    
 
     // hide card deck and show game info indicators
     cardDeck.style.display = "none";
@@ -78,20 +82,18 @@ function Board({}) {
     cardDeck.classList.toggle("shake");
   }
 
-  
+  // START TIMER
+  useEffect(() => {
+    const counter = timer > 0 && setInterval(() => setTimer(timer - 1), 1000);
+    // Pause timer if all matches
+    if (matches === cards.length / 2) {
+      clearInterval(counter);
+    }
+    //cleanup function clears the counter when the component unmounts or when timer change
+    return () => clearInterval(counter);
+  }, [timer]);
 
-    // start timer
-    useEffect(()=> {
-      const counter = timer > 0 && setInterval(()=> setTimer(timer - 1), 1000);
-      // Pause timer if all matches
-      if (matches === cards.length/2) {
-        clearInterval(counter);
-      }
-      //cleanup function clears the counter when the component unmounts or when timer change
-      return ()=> clearInterval(counter);
-    }, [timer]);
-
-  // handle choice
+  // HANDLE CHOICE
   // if choice one has a value, then we set choice two
   const handleChoice = (card) => {
     choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
@@ -107,7 +109,7 @@ function Board({}) {
           return prevCards.map((card) => {
             if (card.src === choiceOne.src) {
               // increase match count
-              setMatches(matches +1);
+              setMatches(matches + 1);
               // new object with the matched pair set to true
               return { ...card, matched: true };
             } else {
@@ -129,7 +131,6 @@ function Board({}) {
     setTurns((prevTurns) => prevTurns + 1);
     setDisabled(false);
   };
-  
 
   return (
     <>
@@ -151,9 +152,12 @@ function Board({}) {
           TURNS: {turns}
         </span>
         <span id="matches" className="game_info hidden">
-          MATCHES: {matches + " / " + cards.length/2}
+          MATCHES: {matches + " / " + cards.length / 2}
         </span>
-        <span id="time_left" className={timer > 0 ? "game_info hidden": "game_info blink_me"}>
+        <span
+          id="time_left"
+          className={timer > 0 ? "game_info hidden" : "game_info blink_me"}
+        >
           TIME LEFT: {timer} sec
         </span>
       </nav>
@@ -186,7 +190,12 @@ function Board({}) {
             card={card}
             difficulty={difficulty}
             handleChoice={handleChoice}
-            flipped={card === choiceOne || card === choiceTwo || card.matched || timer == 0}
+            flipped={
+              card === choiceOne ||
+              card === choiceTwo ||
+              card.matched ||
+              timer == 0
+            }
             disabled={disabled}
             timer={timer}
           />
