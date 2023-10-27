@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import SingleCard from "./SingleCard";
+import GameOver from "./GameOver";
 
 const cardImages = [
   { src: "../src/assets/img/game-cards-logos/storm.jpg", matched: false },
@@ -200,6 +201,19 @@ function Board({}) {
             timer={timer}
           />
         ))}
+      </div>
+
+  {/* GAME OVER POPUP */}
+
+ 
+      <div className={timer<61 ? "game_over_popup": "hidden"} >
+        <GameOver
+          timeLeft={timer}
+          turnsNeeded={turns}
+          level={difficulty}
+          matchesMade={matches}
+          remainingPairs={cards.length / 2 - matches}
+        />
       </div>
     </>
   );

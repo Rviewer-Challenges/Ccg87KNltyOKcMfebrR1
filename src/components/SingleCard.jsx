@@ -21,5 +21,11 @@ export default function SingleCard({ card, handleChoice, flipped, disabled, time
         
       </div>
     </div>
+
+    
+
+    
   );
 }
+
+

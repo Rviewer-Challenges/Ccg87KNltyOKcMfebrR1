@@ -5,12 +5,13 @@
 *::after {
   box-sizing: border-box;
   font-family: "Marvel", serif;
-  background-color: #210225;
 }
 
 body {
   margin: 0;
+  background-color:#1d0131;
 }
+
 
  img,
 picture,
@@ -101,7 +102,7 @@ iframe {
 
 .level-box {
   width: 22vw;
-  margin: 0.5em;
+  margin: 0.2em;
 }
 
 /* Media Query for Mobile Devices (vertical) */
@@ -177,7 +178,7 @@ iframe {
 }
 
 /* ipads */
-@media (min-width: 1100px) {
+@media (min-width: 1100px) and (max-width: 1300px) {
   .card-grid-44{
     width: 53vw;
     margin-top: 4rem;
@@ -229,7 +230,7 @@ iframe {
   }
 }
 /* ipads horizontal */
-@media (min-width: 1100px) {
+@media (min-width: 1100px) and (max-width: 1300px) {
   .card-grid-64{
     width: 80vw;
     margin-top: 3rem;
@@ -270,6 +271,13 @@ iframe {
     margin-top: 0.5rem;
   }
 }
+/* ipad horizontal */
+@media (min-width: 1100px) and (max-width: 1300px) {
+  .card-grid-65{
+    width: 70vw;
+    margin-top: 3rem;
+  }
+}
 /* ipad vertical */
 @media (min-width: 800px)  and (max-width: 1200px) {
   .card-grid-65{
@@ -291,12 +299,7 @@ iframe {
     margin-top: 3rem;
   }
 }
-@media (min-width: 1100px) {
-  .card-grid-65{
-    width: 70vw;
-    margin-top: 3rem;
-  }
-}
+
 
 /* ^^CARD GRID^^ */
 
@@ -399,6 +402,24 @@ button:hover {
 
 .hidden {
   display: none;
+}
+
+.game_over_popup {
+  display: block;
+  width: 300px;
+  text-align: center;
+  text-shadow: 2px 2px #000000;
+  color: white;
+  position: fixed;
+  bottom: 50%;
+  right: 50%;
+  z-index: 9;
+  background-color: #00000090;
+  /* background-image: url("assets/img/over.gif"); */
+  
+  
+
+
 }
 
 
