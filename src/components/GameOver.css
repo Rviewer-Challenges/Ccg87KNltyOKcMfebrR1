@@ -1,0 +1,12 @@
+.game_over_popup {
+  display: block;
+  width: 100vw;
+  text-align: center;
+  color: white;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 0.2rem;
+  z-index: 9;
+  background-color: #00000090;
+}

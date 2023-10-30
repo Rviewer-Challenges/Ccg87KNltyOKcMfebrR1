@@ -1,0 +1,242 @@
+.gentle-hover-shake:hover {
+  animation: tilt-shaking 0.45s infinite;
+}
+
+.shake {
+  animation: tilt-shaking 0.45s infinite;
+}
+
+.card_deck {
+  width: min-content;
+  cursor: pointer;
+  width: 15em;
+  margin-top: 4em;
+}
+
+/* Media Query for Mobile Devices (horizontal) */
+@media (min-width: 481px) and (max-width: 980px) {
+  .card_deck {
+    margin-top: 2em;
+    width: 140px;
+  }
+}
+
+/* Media Query for Mobile Devices (vertical) */
+@media (max-width: 480px) {
+  .card_deck {
+    margin-top: 6em;
+    width: 200px;
+  }
+}
+
+/* Large screens */
+@media (min-width: 1400px) {
+  .card_deck {
+    width: 300px;
+    margin-top: 100px;
+  }
+}
+@media (min-width: 1600px) {
+  .card_deck {
+    width: 400px;
+    margin-top: 100px;
+  }
+}
+
+/* CARD GRID */
+/* easy */
+.card-grid-44 {
+  width: 38vw;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 0.5rem;
+  background-color: 1px solid yellow;
+}
+/* Media Query for Mobile Devices (vertical) */
+@media (max-width: 480px) {
+  .card-grid-44 {
+    width: 90vw;
+    margin-top: 4em;
+  }
+}
+
+/* Media Query for Mobile Devices (horizontal) */
+@media (min-width: 800px) {
+  .card-grid-44 {
+    width: 35vw;
+    margin-top: 1em;
+  }
+}
+/* Large screens */
+@media (min-width: 1600px) {
+  .card-grid-44 {
+    width: 48vw;
+    margin-top: 4rem;
+  }
+}
+@media (min-width: 1400px) {
+  .card-grid-44 {
+    width: 48vw;
+    margin-top: 3rem;
+  }
+}
+@media (min-width: 2400px) {
+  .card-grid-44 {
+    width: 35vw;
+    margin-top: 3rem;
+  }
+}
+
+/* ipad horizontal */
+@media (min-width: 1100px) and (max-width: 1300px) {
+  .card-grid-44 {
+    width: 53vw;
+    margin-top: 4rem;
+  }
+}
+/* ipad vertical */
+@media (min-width: 480px) and (max-width: 768px) {
+  .card-grid-44 {
+    width: 90vw;
+    margin-top: 6rem;
+  }
+}
+
+/* medium */
+.card-grid-64 {
+  width: 55vw;
+  margin: auto;
+  margin-top: 3em;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 0.5rem;
+}
+/* Media Query for Mobile Devices (vertical) */
+@media (max-width: 480px) {
+  .card-grid-64 {
+    width: 90vw;
+    margin-top: 2.5em;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+/* Media Query for Mobile Devices (horizontal) */
+@media (min-width: 481px) and (max-width: 980px) {
+  .card-grid-64 {
+    width: 52vw;
+    margin-top: 1em;
+  }
+}
+/* Large screens */
+@media (min-width: 1600px) {
+  .card-grid-64 {
+    width: 70vw;
+    margin-top: 5rem;
+  }
+}
+@media (min-width: 1400px) {
+  .card-grid-64 {
+    width: 70vw;
+    margin-top: 3rem;
+  }
+}
+@media (min-width: 2400px) {
+  .card-grid-64 {
+    width: 50vw;
+    margin-top: 3rem;
+  }
+}
+/* ipads horizontal */
+@media (min-width: 1100px) and (max-width: 1300px) {
+  .card-grid-64 {
+    width: 80vw;
+    margin-top: 3rem;
+  }
+}
+/* ipad vertical */
+@media (min-width: 4800px) and (max-width: 768px) {
+  .card-grid-64 {
+    width: 70vw;
+    margin-top: 4rem;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+/* hard */
+.card-grid-65 {
+  width: 47vw;
+  margin: auto;
+  margin-top: 1em;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 0.5rem;
+}
+/* Media Query for Mobile Devices (vertical) */
+@media (max-width: 480px) {
+  .card-grid-65 {
+    width: 95vw;
+    margin-top: 3rem;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+}
+/* Media Query for Mobile Devices (horizontal) */
+@media (min-width: 481px) and (max-width: 980px) {
+  .card-grid-65 {
+    width: 45vw;
+    margin-top: 0.5rem;
+  }
+}
+/* ipad horizontal */
+@media (min-width: 1100px) and (max-width: 1300px) {
+  .card-grid-65 {
+    width: 70vw;
+    margin-top: 3rem;
+  }
+}
+/* ipad vertical */
+@media (min-width: 480px) and (max-width: 768px) {
+  .card-grid-65 {
+    width: 90vw;
+    margin-top: 8rem;
+  }
+}
+
+/* Large screens */
+@media (min-width: 1400px) {
+  .card-grid-65 {
+    width: 56vw;
+    margin-top: 3rem;
+  }
+}
+@media (min-width: 1600px) {
+  .card-grid-65 {
+    width: 60vw;
+    margin-top: 3rem;
+  }
+}
+@media (min-width: 2400px) {
+  .card-grid-65 {
+    width: 40vw;
+    margin-top: 3rem;
+  }
+}
+
+/* ^^CARD GRID^^ */
+
+@keyframes tilt-shaking {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(0eg);
+  }
+  75% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}

@@ -1,0 +1,46 @@
+nav {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1em;
+  margin: 1em;
+}
+
+.right {
+  margin-left: auto;
+}
+
+.game_info {
+  font-size: medium;
+  color: white;
+  padding: 0.5em;
+}
+
+/* Media Query for Mobile Devices (vertical) */
+@media (max-width: 480px) {
+  .game_info {
+    font-size: small;
+    padding: 0.5em;
+    border: none;
+  }
+}
+
+button {
+  font-size: medium;
+  height: 3rem;
+  background-color: #ed1d24;
+  color: white;
+  padding: 0.5em;
+  border: none;
+}
+/* Media Query for Mobile Devices (horizontal) */
+@media (max-width: 480px) {
+  button {
+    font-size: small;
+    height: 3.5rem;
+  }
+}
+
+button:hover {
+  background-color: black;
+  cursor: pointer;
+}

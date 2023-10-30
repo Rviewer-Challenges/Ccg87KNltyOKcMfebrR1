@@ -1,8 +1,9 @@
+import "./Board.css";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import SingleCard from "./SingleCard";
 import GameOver from "./GameOver";
+import Nav from "./Nav";
 
 const cardImages = [
   { src: "../src/assets/img/game-cards-logos/storm.jpg", matched: false },
@@ -28,7 +29,7 @@ const cardImages = [
   { src: "../src/assets/img/game-cards-logos/hulk.jpg", matched: false },
 ];
 
-function Board({}) {
+export default function Board({}) {
   const { difficulty } = useParams();
   const [cards, setCards] = useState([]);
   const [turns, setTurns] = useState(0);
@@ -103,7 +104,7 @@ function Board({}) {
   // compare 2 selected cards
   useEffect(() => {
     if (choiceOne && choiceTwo) {
-      // whe a choice is made, disable other cards to make unclicable for a moment
+      // when a choice is made, disable other cards to make unclickable for a moment
       setDisabled(true);
       if (choiceOne.src === choiceTwo.src) {
         setCards((prevCards) => {
@@ -135,36 +136,19 @@ function Board({}) {
 
   return (
     <>
-      <nav>
-        <button className={timer == 0 || matches == cards.length/2 ? "blink_me": ""}
-          onClick={shuffledCards}
-          onMouseOver={shake}
-          onMouseLeave={shake}
-        >
-          NEW GAME
-        </button>
-        <Link to="/">
-          <button>CHANGE DIFFICULTY</button>
-        </Link>
-        <span className="right game_info">
-          DIFFICULTY: {difficulty.toUpperCase()}
-        </span>
-        <span id="turns" className="game_info hidden">
-          TURNS: {turns}
-        </span>
-        <span id="matches" className="game_info hidden">
-          MATCHES: {matches + " / " + cards.length / 2}
-        </span>
-        <span
-          id="time_left"
-          className={timer > 0 ? "game_info hidden" : "game_info blink_me"}
-        >
-          TIME LEFT: {timer} sec
-        </span>
-      </nav>
+      {/* NAV BAR WIth BUTTONS and GAME INFO */}
+      <Nav
+        difficulty={difficulty}
+        turns={turns}
+        matches={matches}
+        Pairs={cards.length / 2}
+        timer={timer}
+        shuffledCards={shuffledCards}
+        shake={shake}
+      />
 
       {/* CARD DECK WITH HOVER SHAKE ANIMATION */}
-      <div className="backdrop">
+      <div>
         <img
           id="card-deck"
           className="card_deck gentle-hover-shake"
@@ -185,6 +169,7 @@ function Board({}) {
             : "card-grid-65"
         }
       >
+        {/* CARD GRID */}
         {cards.map((card) => (
           <SingleCard
             key={card.id}
@@ -201,20 +186,19 @@ function Board({}) {
             timer={timer}
           />
         ))}
-      </div>
-
-  {/* GAME OVER POPUP */}
-      <div>
-        <GameOver
-          timeLeft={timer}
-          turnsNeeded={turns}
-          level={difficulty}
-          matchesMade={matches}
-          Pairs={cards.length/2}
-        />
+        {/* GAME OVER POPUP */}
+        <div>
+          <GameOver
+            timeLeft={timer}
+            turnsNeeded={turns}
+            level={difficulty}
+            matchesMade={matches}
+            Pairs={cards.length / 2}
+          />
+        </div>
       </div>
     </>
   );
 }
 
-export default Board;
+
