@@ -36,7 +36,10 @@ Download or clone the repository
 > - run npm run dev
 
 ## Screenshots
+![localhost_5173_(1366x768)](https://github.com/Vmart1989/memory-game/assets/87582590/0ee5106a-3589-42a0-bcea-511e67c6252e)
+![localhost_5173_(1366x768) (1)](https://github.com/Vmart1989/memory-game/assets/87582590/e5ef5e26-164c-4f1e-952b-ca26f953c080)
+![localhost_5173_play_medium(1366x768) (1)](https://github.com/Vmart1989/memory-game/assets/87582590/2086c648-4f2e-438d-b602-42454335da63)
 
 
-License
+## License
 MIT license @ Victor Martinez Segura
