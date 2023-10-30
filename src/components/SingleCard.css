@@ -3,9 +3,28 @@
 }
 
 .card img {
-  width: 100%;
+  width:100%;
   display: block;
 }
+/* mobile L (425) */
+@media (max-width:425px) {
+  .card img {
+    width: 20vw;
+  }
+}
+/* mobile M (375) */
+@media (max-width:375px) {
+  .card img {
+    width: 21vw;
+  }
+}
+/* mobile S (320) */
+@media (max-width:320px) {
+  .card img {
+    width: 25vw;
+  }
+}
+
 
 /* front of card  */
 .card .front {

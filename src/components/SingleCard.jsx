@@ -9,7 +9,7 @@ export default function SingleCard({ card, handleChoice, flipped, disabled, time
   };
 
   return (
-    <div className="card">
+    <div className="card pop_me">
       <div className={flipped ? "flipped" : ""}>
         <img className={flipped && !card.matched && timer == 0 ? "front unmatched" : "front" } src={card.src} alt="card front" />
         <img

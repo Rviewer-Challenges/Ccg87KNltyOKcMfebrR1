@@ -3,13 +3,13 @@ export default function GameOver({
   timeLeft,
   level,
   matchesMade,
-  remainingPairs,
+  Pairs,
 }) {
-  if (matchesMade == matchesMade + remainingPairs || timeLeft === 0) {
+  if (matchesMade == Pairs && turnsNeeded >0 || timeLeft === 0) {
     return (
       <>
-        <div>
-            <h1>{timeLeft === 0 ? "GAME OVER" : "YOU ARE A HERO!"}</h1>
+        <div className="game_over_popup">
+          <h1>{timeLeft === 0 ? "GAME OVER" : "YOU ARE A HERO!"}</h1>
           <p>Turns Used: {turnsNeeded}</p>
           <p>Time Remaining: {timeLeft} {timeLeft == 1 ? "second" : "seconds"}</p>
           <p>Matches Made: {matchesMade}</p>

@@ -136,7 +136,7 @@ function Board({}) {
   return (
     <>
       <nav>
-        <button
+        <button className={timer == 0 || matches == cards.length/2 ? "blink_me": ""}
           onClick={shuffledCards}
           onMouseOver={shake}
           onMouseLeave={shake}
@@ -204,15 +204,13 @@ function Board({}) {
       </div>
 
   {/* GAME OVER POPUP */}
-
- 
-      <div className={timer<61 ? "game_over_popup": "hidden"} >
+      <div>
         <GameOver
           timeLeft={timer}
           turnsNeeded={turns}
           level={difficulty}
           matchesMade={matches}
-          remainingPairs={cards.length / 2 - matches}
+          Pairs={cards.length/2}
         />
       </div>
     </>
