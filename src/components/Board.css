@@ -1,8 +1,5 @@
-.gentle-hover-shake:hover {
-  animation: tilt-shaking 0.45s infinite;
-}
 
-.shake {
+.shake_me {
   animation: tilt-shaking 0.45s infinite;
 }
 

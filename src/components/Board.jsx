@@ -81,7 +81,7 @@ export default function Board({}) {
   //shake animation on card deck
   function shake() {
     const cardDeck = document.getElementById("card-deck");
-    cardDeck.classList.toggle("shake");
+    cardDeck.classList.toggle("shake_me");
   }
 
   // START TIMER
@@ -150,13 +150,16 @@ export default function Board({}) {
       {/* CARD DECK WITH HOVER SHAKE ANIMATION */}
       <div>
         <img
+          data-testid="card-deck"
           id="card-deck"
-          className="card_deck gentle-hover-shake"
+          className="card_deck"
           onClick={shuffledCards}
+          onMouseEnter={shake}
+          onMouseLeave={shake}
           src="..\src\assets\img\card-deck2.png"
           alt="card deck"
         />
-        <p id="instruction">Click on deck to shuffle cards</p>
+        <p id="instruction">Click on card deck to shuffle cards</p>
       </div>
 
       {/* LAYOUT CARDS BASED ON LEVEL*/}

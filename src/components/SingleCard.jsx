@@ -6,6 +6,7 @@ export default function SingleCard({
   flipped,
   disabled,
   timer,
+  
 }) {
   const handleClick = () => {
     if (!disabled && timer > 0) {
@@ -14,8 +15,8 @@ export default function SingleCard({
   };
 
   return (
-    <div className="card pop_me">
-      <div className={flipped ? "flipped" : ""}>
+    <div className="card pop_me" >
+      <div className={flipped ? "flipped" : ""} data-testid="single-card">
         <img
           className={
             flipped && !card.matched && timer == 0 ? "front unmatched" : "front"

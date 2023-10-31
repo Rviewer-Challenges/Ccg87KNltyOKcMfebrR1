@@ -24,7 +24,8 @@ export default function Nav({
         <button>CHANGE DIFFICULTY</button>
       </Link>
       <span className="right game_info">
-        DIFFICULTY: {difficulty.toUpperCase()}
+        {/* when difficulty has value use the upper method */}
+        DIFFICULTY: {difficulty ? difficulty.toUpperCase() : 'Unknown'}
       </span>
       <span id="turns" className="game_info hidden">
         TURNS: {turns}
